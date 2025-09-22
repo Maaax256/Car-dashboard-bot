@@ -1,3 +1,4 @@
+import time
 import telebot
 import os
 from dotenv import load_dotenv
@@ -86,4 +87,9 @@ def send_result(message):
     user_mileages[user_id] = []
 
 
-bot.polling(none_stop=True)
+while True:
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        print(f"Bot crashed with error: {e}")
+        time.sleep(15)
